@@ -3,55 +3,55 @@ import { useState } from 'react';
 export default function App() {
   const [count, setCounter] = useState(0);
 
+  function handleClick(text) {
+    if (text.toLowerCase() === 'kurang') {
+      setCounter(count - 1);
+    } else if (text.toLowerCase() === 'tambah') {
+      setCounter(count + 1);
+    } else {
+      setCounter(0);
+    }
+  }
+
   return (
     <div className='container'>
       <div className='show-counter'>
         <Button
           className={'button'}
           disabled={count === 0 ? true : false}
-          value={'Kurang'}
+          text={'Kurang'}
           count={count}
-          setCounter={setCounter}
+          handleClick={handleClick}
         />
         <p>{count}</p>
         <Button
           className={'button'}
           disabled={count < 10 ? false : true}
-          value={'Tambah'}
+          text={'Tambah'}
           count={count}
-          setCounter={setCounter}
+          handleClick={handleClick}
         />
       </div>
       <Button
         className={'button reset'}
         disabled={count === 0 ? true : false}
-        value={'Reset'}
-        setCounter={setCounter}
+        text={'Reset'}
+        handleClick={handleClick}
       />
     </div>
   );
 }
 
-function Button({ className, disabled, value, count, setCounter }) {
+function Button({ className, disabled, text, handleClick }) {
   return (
     <button
       className={className}
       disabled={disabled}
       onClick={() => {
-        handleClick(value, count, setCounter);
+        handleClick(text);
       }}
     >
-      {value}
+      {text}
     </button>
   );
-}
-
-function handleClick(value, counter, setCounter) {
-  if (value.toLowerCase() === 'kurang') {
-    setCounter(counter - 1);
-  } else if (value.toLowerCase() === 'tambah') {
-    setCounter(counter + 1);
-  } else {
-    setCounter(0);
-  }
 }
