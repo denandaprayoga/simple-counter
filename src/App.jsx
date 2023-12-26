@@ -20,7 +20,6 @@ export default function App() {
           className={'button'}
           disabled={count === 0 ? true : false}
           text={'Kurang'}
-          count={count}
           handleClick={handleClick}
         />
         <p>{count}</p>
@@ -28,7 +27,6 @@ export default function App() {
           className={'button'}
           disabled={count < 10 ? false : true}
           text={'Tambah'}
-          count={count}
           handleClick={handleClick}
         />
       </div>
